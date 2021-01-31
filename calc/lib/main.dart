@@ -9,6 +9,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String result = '';
+  double number1 = 0.0;
+  double number2 = 0.0;
+
   @override
   Widget build(BuildContext context) {
     /* Campo tipo number 1*/
@@ -23,6 +27,9 @@ class _MyAppState extends State<MyApp> {
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.deepOrange, width: 1.0)),
       ),
+      onChanged: (value) {
+        number1 = double.parse(value);
+      },
     );
     /* Campo tipo number 2*/
     TextField num2 = TextField(
@@ -36,16 +43,29 @@ class _MyAppState extends State<MyApp> {
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.deepOrange, width: 1.0)),
       ),
+      onChanged: (value) {
+        number2 = double.parse(value);
+      },
     );
 
     /* Botão */
     RaisedButton button = RaisedButton(
-        onPressed: () {},
-        child: Text('Calcular'),
-        color: Colors.deepOrange,
-        textColor: Colors.white,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)));
+      child: Text('Calcular'),
+      color: Colors.deepOrange,
+      textColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
+      onPressed: () {
+        setState(() {
+          double calc = number1 + number2;
+          this.result = "O resultado da soma é ${calc.toStringAsFixed(0)}";
+        });
+      },
+    );
+
+    Text result = Text(
+      this.result,
+      style: TextStyle(color: Colors.deepOrange),
+    );
 
     /* Separador */
     Padding separator = Padding(
@@ -63,6 +83,8 @@ class _MyAppState extends State<MyApp> {
           child: button,
           width: double.infinity,
         ),
+        separator,
+        result
       ],
     );
 
