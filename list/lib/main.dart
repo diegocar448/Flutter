@@ -25,7 +25,9 @@ class ListApp extends StatelessWidget {
           backgroundColor: Colors.deepPurple,
           centerTitle: true,
         ),
-        body: ListView.builder(
+        body: ListView.separated(
+          separatorBuilder: (context, index) =>
+              Divider(color: Colors.deepPurple),
           /* Pegar quantidade de items na lista */
           itemCount: items.length,
           itemBuilder: (BuildContext context, index) {
