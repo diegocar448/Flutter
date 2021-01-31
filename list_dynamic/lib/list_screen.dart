@@ -1,3 +1,4 @@
+import "dart:math";
 import 'package:flutter/material.dart';
 
 class ListScreen extends StatefulWidget {
@@ -6,7 +7,7 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  List<String> todos = ['Default'];
+  List<String> todos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,18 @@ class _ListScreenState extends State<ListScreen> {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        child: Icon(Icons.add),
+        onPressed: _addTodo,
+      ),
     );
+  }
+
+  void _addTodo() {
+    setState(() {
+      int randomNumber = new Random().nextInt(100);
+      todos.add("Task $randomNumber");
+    });
   }
 }
