@@ -55,11 +55,16 @@ class _ListScreenState extends State<ListScreen> {
   }
 
   /* Aqui daremos inicio a abertura do modal */
-  void _addItem() {
-    showDialog(
+  /* Usamos o async e await para rodar de modo assincrono para que não se quebre o processo */
+  void _addItem() async {
+    final item = await showDialog<Item>(
         context: context,
         builder: (BuildContext context) {
           return new AddItem();
         });
+
+    setState(() {
+      items.add(item);
+    });
   }
 }
