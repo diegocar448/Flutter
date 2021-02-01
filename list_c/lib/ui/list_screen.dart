@@ -38,11 +38,17 @@ class _ListScreenState extends State<ListScreen> {
             leading: CircleAvatar(
               backgroundColor: Colors.blueGrey,
               child: IconTheme(
-                child: Icon(Icons.done),
+                child: Icon(item.isDone ? Icons.done_all : Icons.done),
                 data: IconThemeData(color: Colors.white),
               ),
             ),
             title: Text(item.title, style: TextStyle(color: Colors.blueGrey)),
+            /* onTap é quando clicar */
+            onTap: () {
+              setState(() {
+                items[index].isDone = !items[index].isDone;
+              });
+            },
           );
         },
       ),
