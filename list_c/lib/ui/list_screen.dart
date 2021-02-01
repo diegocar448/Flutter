@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:list_c/models/item.dart';
+
 class ListScreen extends StatefulWidget {
   ListScreen({Key key}) : super(key: key);
 
@@ -8,7 +10,13 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
-  List<String> items = ['items'];
+  List<Item> items = [
+    /* new Item(title: 'Teste 01'),
+    new Item(title: 'Teste 02'),
+    new Item(title: 'Teste 03'),
+    new Item(title: 'Teste 04'),
+    new Item(title: 'Teste 05'), */
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +30,9 @@ class _ListScreenState extends State<ListScreen> {
         separatorBuilder: (context, index) => Divider(color: Colors.blueGrey),
         itemCount: items.length,
         itemBuilder: (context, index) {
+          /* Variavel do tipo final pq ele será usada apenas aqui */
+          final item = items[index];
+
           return ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.blueGrey,
@@ -30,7 +41,7 @@ class _ListScreenState extends State<ListScreen> {
                 data: IconThemeData(color: Colors.white),
               ),
             ),
-            title: Text(items[index], style: TextStyle(color: Colors.blueGrey)),
+            title: Text(item.title, style: TextStyle(color: Colors.blueGrey)),
           );
         },
       ),
