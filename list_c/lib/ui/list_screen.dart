@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:list_c/models/item.dart';
@@ -27,30 +28,33 @@ class _ListScreenState extends State<ListScreen> {
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) => Divider(color: Colors.blueGrey),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          /* Variavel do tipo final pq ele será usada apenas aqui */
-          final item = items[index];
+      body: RefreshIndicator(
+        onRefresh: _refresh,
+        child: ListView.separated(
+          separatorBuilder: (context, index) => Divider(color: Colors.blueGrey),
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            /* Variavel do tipo final pq ele será usada apenas aqui */
+            final item = items[index];
 
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.blueGrey,
-              child: IconTheme(
-                child: Icon(item.isDone ? Icons.done_all : Icons.done),
-                data: IconThemeData(color: Colors.white),
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blueGrey,
+                child: IconTheme(
+                  child: Icon(item.isDone ? Icons.done_all : Icons.done),
+                  data: IconThemeData(color: Colors.white),
+                ),
               ),
-            ),
-            title: Text(item.title, style: TextStyle(color: Colors.blueGrey)),
-            /* onTap é quando clicar */
-            onTap: () {
-              setState(() {
-                items[index].isDone = !items[index].isDone;
-              });
-            },
-          );
-        },
+              title: Text(item.title, style: TextStyle(color: Colors.blueGrey)),
+              /* onTap é quando clicar */
+              onTap: () {
+                setState(() {
+                  items[index].isDone = !items[index].isDone;
+                });
+              },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blueGrey,
@@ -69,8 +73,28 @@ class _ListScreenState extends State<ListScreen> {
           return new AddItem();
         });
 
+    if (item != null) {
+      setState(() {
+        items.add(item);
+      });
+    }
+  }
+
+  /* Aqui iremos atualizar a nossa lista */
+  Future<void> _refresh() async {
+    /* adicionará um delay de 2 segundos */
+    await Future.delayed(Duration(seconds: 2));
+
     setState(() {
-      items.add(item);
+      /* Aqui faz a comparação dos itens antes e depois */
+      items.sort((a, b) {
+        if (a.isDone && !b.isDone)
+          return 1;
+        else if (!a.isDone && !b.isDone) return -1;
+        return 0;
+      });
     });
+
+    return Future.value();
   }
 }
