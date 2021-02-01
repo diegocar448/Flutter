@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:list_c/models/item.dart';
+import 'package:list_c/ui/add_item.dart';
 
 class ListScreen extends StatefulWidget {
   ListScreen({Key key}) : super(key: key);
@@ -45,6 +46,20 @@ class _ListScreenState extends State<ListScreen> {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueGrey,
+        child: Icon(Icons.add),
+        onPressed: _addItem,
+      ),
     );
+  }
+
+  /* Aqui daremos inicio a abertura do modal */
+  void _addItem() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new AddItem();
+        });
   }
 }
