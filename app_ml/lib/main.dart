@@ -1,40 +1,54 @@
 import 'package:flutter/material.dart';
 
+import 'package:app_ml/widget/app_bar_search.dart';
+
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   MyApp({Key key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "App ML Clone",
-      home: Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text("Mercado Livre", style: TextStyle(color: Colors.black)),
-          backgroundColor: Color.fromRGBO(255, 241, 89, 1),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        body: Center(
-          child: Text('Home Mercado Livre'),
-        ),
+      title: 'App ML Clone',
+      home: HomeMyApp(),
+    );
+  }
+}
+
+class HomeMyApp extends StatefulWidget {
+  HomeMyApp({Key key}) : super(key: key);
+
+  @override
+  _HomeMyAppState createState() => _HomeMyAppState();
+}
+
+class _HomeMyAppState extends State<HomeMyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text("Mercado Livre", style: TextStyle(color: Colors.black)),
+        backgroundColor: Color.fromRGBO(255, 241, 89, 1),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              /* delegate == qual classe terá nossa opções de pesquisa */
+              showSearch(context: context, delegate: AppSearchBar());
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Text('Home Mercado Livre'),
       ),
     );
   }
