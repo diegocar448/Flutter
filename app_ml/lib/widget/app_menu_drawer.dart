@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:app_ml/pages/page01.dart';
+import 'package:app_ml/pages/page02.dart';
+
 class AppMenuDrawer extends StatelessWidget {
   const AppMenuDrawer({Key key}) : super(key: key);
 
@@ -44,23 +47,29 @@ class AppMenuDrawer extends StatelessWidget {
           ),
         ),
         /* Automatizando criação de menus */
-        _itemDrawer(icon: Icon(Icons.home), text: "Home"),
-        _itemDrawer(icon: Icon(Icons.hotel), text: "Página 02"),
+        _itemDrawer(context, Page01(), icon: Icon(Icons.home), text: "Home"),
+        _itemDrawer(context, Page02(),
+            icon: Icon(Icons.hotel), text: "Página 02"),
         Divider(color: Colors.grey),
-        _itemDrawer(icon: Icon(Icons.label_important), text: "Página 03"),
-        _itemDrawer(
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.label_important), text: "Página 03"),
+        _itemDrawer(context, Page01(),
             icon: Icon(Icons.location_searching),
             text: "Página 04",
             badge: '5'),
-        _itemDrawer(icon: Icon(Icons.filter_8), text: "Página 05"),
-        _itemDrawer(icon: Icon(Icons.face), text: "Página 06"),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.filter_8), text: "Página 05"),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.face), text: "Página 06"),
         Divider(color: Colors.grey),
-        _itemDrawer(icon: Icon(Icons.exit_to_app), text: "Sair"),
+        _itemDrawer(context, Page01(),
+            icon: Icon(Icons.exit_to_app), text: "Sair"),
       ],
     );
   }
 
-  Widget _itemDrawer({Icon icon, String text, String badge = ''}) {
+  Widget _itemDrawer(context, page,
+      {Icon icon, String text, String badge = ''}) {
     /* Home */
     return ListTile(
       leading: IconTheme(
@@ -86,7 +95,10 @@ class AppMenuDrawer extends StatelessWidget {
                 ))
             : Text(''),
       ),
-      onTap: () {},
+      /* Ir para outra tela */
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+      },
     );
     /* # Home */
   }
