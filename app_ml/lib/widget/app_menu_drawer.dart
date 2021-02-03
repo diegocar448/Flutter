@@ -42,8 +42,36 @@ class AppMenuDrawer extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
+        /* Automatizando criação de menus */
+        _itemDrawer(Icon(Icons.home), "Home"),
+        _itemDrawer(Icon(Icons.hotel), "Página 02"),
+        Divider(color: Colors.grey),
+        _itemDrawer(Icon(Icons.label_important), "Página 03"),
+        _itemDrawer(Icon(Icons.location_searching), "Página 04"),
+        _itemDrawer(Icon(Icons.filter_8), "Página 05"),
+        _itemDrawer(Icon(Icons.face), "Página 06"),
+        Divider(color: Colors.grey),
+        _itemDrawer(Icon(Icons.exit_to_app), "Sair"),
       ],
     );
+  }
+
+  Widget _itemDrawer(Icon icon, String text) {
+    /* Home */
+    return ListTile(
+      leading: IconTheme(
+        child: icon,
+        data: IconThemeData(color: Colors.black),
+      ),
+      title: Text(
+        text,
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ),
+      onTap: () {},
+    );
+    /* # Home */
   }
 }
