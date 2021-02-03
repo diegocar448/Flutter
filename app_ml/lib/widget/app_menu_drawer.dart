@@ -44,20 +44,23 @@ class AppMenuDrawer extends StatelessWidget {
           ),
         ),
         /* Automatizando criação de menus */
-        _itemDrawer(Icon(Icons.home), "Home"),
-        _itemDrawer(Icon(Icons.hotel), "Página 02"),
+        _itemDrawer(icon: Icon(Icons.home), text: "Home"),
+        _itemDrawer(icon: Icon(Icons.hotel), text: "Página 02"),
         Divider(color: Colors.grey),
-        _itemDrawer(Icon(Icons.label_important), "Página 03"),
-        _itemDrawer(Icon(Icons.location_searching), "Página 04"),
-        _itemDrawer(Icon(Icons.filter_8), "Página 05"),
-        _itemDrawer(Icon(Icons.face), "Página 06"),
+        _itemDrawer(icon: Icon(Icons.label_important), text: "Página 03"),
+        _itemDrawer(
+            icon: Icon(Icons.location_searching),
+            text: "Página 04",
+            badge: '5'),
+        _itemDrawer(icon: Icon(Icons.filter_8), text: "Página 05"),
+        _itemDrawer(icon: Icon(Icons.face), text: "Página 06"),
         Divider(color: Colors.grey),
-        _itemDrawer(Icon(Icons.exit_to_app), "Sair"),
+        _itemDrawer(icon: Icon(Icons.exit_to_app), text: "Sair"),
       ],
     );
   }
 
-  Widget _itemDrawer(Icon icon, String text) {
+  Widget _itemDrawer({Icon icon, String text, String badge = ''}) {
     /* Home */
     return ListTile(
       leading: IconTheme(
@@ -69,6 +72,19 @@ class AppMenuDrawer extends StatelessWidget {
         style: TextStyle(
           color: Colors.black,
         ),
+      ),
+      trailing: Container(
+        decoration: BoxDecoration(
+            color: Colors.black, borderRadius: BorderRadius.circular(100.0)),
+        child: badge != ''
+            ? Padding(
+                padding: EdgeInsets.fromLTRB(6.0, 2.0, 6.0, 2.0),
+                child: Text(
+                  badge,
+                  style: TextStyle(
+                      backgroundColor: Colors.black, color: Colors.white),
+                ))
+            : Text(''),
       ),
       onTap: () {},
     );
