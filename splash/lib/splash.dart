@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class Splash extends StatelessWidget {
+class Splash extends StatefulWidget {
+  Splash({Key key}) : super(key: key);
+
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    super.initState();
+
+    /* Deixando a tela como fullScreen */
+    SystemChrome.setEnabledSystemUIOverlays([]);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
