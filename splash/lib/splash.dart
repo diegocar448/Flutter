@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     /* Após 3 segundos redirecionar para a tela Home ((qual context, newRoute(qual tela vai redirecionar))) */
-    Future.delayed(Duration(seconds: 3)).then((_) => {
+    _checkAuth().then((_) => {
           /* com a função pushReplacacement não teremos função para voltar */
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Home()))
@@ -59,5 +59,12 @@ class _SplashState extends State<Splash> {
         ),
       ),
     );
+  }
+
+  /* rodar de forma assincrona async e await */
+  Future<String> _checkAuth() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    return null;
   }
 }
