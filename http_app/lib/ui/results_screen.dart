@@ -48,6 +48,28 @@ class ResultsScreen extends StatelessWidget {
                               fontSize: 26.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
+                      /* Espaçamento */
+                      Container(height: 20.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                              padding: EdgeInsets.fromLTRB(12, 6, 12, 6),
+                              decoration: BoxDecoration(
+                                  color: Colors.deepOrange,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Text('Seguidores: ${user.followers}',
+                                  style: TextStyle(color: Colors.white))),
+                          Container(width: 10.0),
+                          Container(
+                              padding: EdgeInsets.fromLTRB(12, 6, 12, 6),
+                              decoration: BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Text('Reposiórios: ${user.publicRepos}',
+                                  style: TextStyle(color: Colors.white))),
+                        ],
+                      )
                     ],
                   ));
             } else if (snapshot.hasError) {
