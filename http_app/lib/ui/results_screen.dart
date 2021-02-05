@@ -6,7 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:http_app/Models/User.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({Key key}) : super(key: key);
+  final String username;
+
+  const ResultsScreen({Key key, this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,8 @@ class ResultsScreen extends StatelessWidget {
   }
 
   Future<User> _fetchUser() async {
-    final response = await http.get('https://api.github.com/users/diegocar448');
+    final response =
+        await http.get('https://api.github.com/users/${this.username}');
     if (response.statusCode == 200) {
       return User.fromJson(json.decode(response.body));
     } else {

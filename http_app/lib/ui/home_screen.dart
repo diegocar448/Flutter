@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http_app/ui/results_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  /* atributo username que será enviado para outra tela via construtor e será usada como parâmetro para api github*/
+  TextEditingController _username = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +34,7 @@ class HomeScreen extends StatelessWidget {
                     height: 30.0,
                   ),
                   TextField(
+                    controller: _username,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide:
@@ -64,7 +68,8 @@ class HomeScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ResultsScreen()));
+                                        builder: (context) => ResultsScreen(
+                                            username: _username.value.text)));
                               }))
                 ],
               ))
