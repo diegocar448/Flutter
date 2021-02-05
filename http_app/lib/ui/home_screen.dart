@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:http_app/ui/results_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,12 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.black,
                               child: Text('Buscar',
                                   style: TextStyle(fontSize: 20.0)),
-                              onPressed: () {}))
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ResultsScreen()));
+                              }))
                 ],
               ))
         ]));
